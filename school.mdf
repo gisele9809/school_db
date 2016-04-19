@@ -1,7 +1,9 @@
 
 -- QUERIES TO MAKE:
-
-
+SELECT * FROM schools;
+SELECT * FROM classes;
+SELECT * FROM students;
+SELECT * FROM teachers; 
 
 
 -- 0) Show the names of all the classes that are currently have students enrolled

@@ -1,1 +1,70 @@
--- Make tables here
+DROP TABLE schools;
+
+CREATE TABLE schools(
+  school_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(64),
+  city  VARCHAR(64),
+ state VARCHAR(128),
+  created_at DATETIME,
+  updated_at DATETIME
+ );
+
+DROP TABLE classes;
+CREATE TABLE classes(
+  class_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  school_id VARCHAR(64),
+  teacher_id VARCHAR(64),
+  name VARCHAR(64),
+  subject VARCHAR(64),
+  code VARCHAR(64),
+  room VARCHAR(64),
+  created_at DATETIME,
+  updated_at DATETIME,
+  Foreign Key (school_id) REFERENCES schools(school_id)
+);
+
+DROP TABLE students;
+CREATE TABLE students(
+  students_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  teachers_id INTEGER,
+  school_id INTEGER,
+  first_name VARCHAR(64),
+  last_name  VARCHAR(64),
+  email VARCHAR(128) UNIQUE,
+  created_at DATETIME,
+  updated_at DATETIME,
+  Foreign Key (teachers_id) REFERENCES teachers(teachers_id)
+  Foreign Key (school_id) REFERENCES schools(school_id)
+);
+
+DROP TABLE teachers;
+CREATE TABLE teachers(
+  teachers_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  school_id VARCHAR(64),
+  first_name VARCHAR(64),
+  last_name VARCHAR(64),
+  email VARCHAR(64),
+  created_at DATETIME,
+  updated_at DATETIME,
+  Foreign Key (school_id) REFERENCES schools(school_id)
+);
+
+DROP TABLE student_classes;
+CREATE TABLE student_classes(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	student_id INTEGER, 
+	class_id INTEGER, 
+	Foreign Key (student_id) REFERENCES students(student_id),
+	Foreign Key (class_id) REFERENCES classes(class_id)
+);
+
+SELECT last_name, subject, name FROM classes WHERE teachers_id = 2;
+SELECT classes FROM school WHERE school_id = 3;
+SELECT students FROM classes WHERE class_id = 3;
+
+/*Bonus*/
+
+SELECT * FROM teachers WHERE school_id = 1;
+SELECT * FROM students WHERE teacher_id = 2; 
+
+

@@ -5,7 +5,7 @@ INSERT INTO schools
 VALUES
 ('Latin', 'Chicago', 'IL', DATETIME('now'), DATETIME('now'));
 
-INSERT INTO schools
+INSERT INTO schools 
 (name, city, state, created_at, updated_at)
 VALUES
 ('Lab', 'Chicago', 'IL', DATETIME('now'), DATETIME('now'));
